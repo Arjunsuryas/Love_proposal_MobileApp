@@ -1,0 +1,41 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Plus, Calendar, Heart, MapPin, Camera } from 'lucide-react-native';
+
+export default function TimelineTab() {
+  const [memories, setMemories] = useState([
+    {
+      id: 1,
+      title: 'First Date',
+      date: 'February 14, 2023',
+      location: 'Sunset Café',
+      description: 'Our magical first date over coffee and dessert',
+      image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400',
+      type: 'milestone'
+    },
+    {
+      id: 2,
+      title: 'First Kiss',
+      date: 'March 2, 2023',
+      location: 'Central Park',
+      description: 'Under the cherry blossoms, our first kiss',
+      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=400',
+      type: 'romantic'
+    },
+    {
+      id: 3,
+      title: 'Six Month Anniversary',
+      date: 'August 14, 2023',
+      location: 'Beachside Restaurant',
+      description: 'Celebrating our journey together by the ocean',
+      image: 'https://images.pexels.com/photos/1566837/pexels-photo-1566837.jpeg?auto=compress&cs=tinysrgb&w=400',
+      type: 'celebration'
+    },
+    {
+      id: 4,
+      title: 'Moving In Together',
+      date: 'December 1, 2023',
+      location: 'Our New Home',
+      description: 'Starting our life together under one roof',
+});
