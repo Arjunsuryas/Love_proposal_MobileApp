@@ -1,0 +1,37 @@
+import React, { useState, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
+import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Camera, Eclipse as Flip, Heart, Download, Share, Play, Square } from 'lucide-react-native';
+
+export default function CaptureTab() {
+  const [facing, setFacing] = useState<CameraType>('back');
+  const [permission, requestPermission] = useCameraPermissions();
+  const [isRecording, setIsRecording] = useState(false);
+  const [showCamera, setShowCamera] = useState(false);
+  const [capturedMedia, setCapturedMedia] = useState<any[]>([]);
+
+  if (!permission) {
+    return <View style={styles.container} />;
+  }
+
+  if (!permission.granted) {
+    return (
+      <View style={styles.container}>
+        <LinearGradient
+          colors={['#8B1538', '#E8B4B8']}
+          style={styles.header}>
+          <Text style={styles.headerTitle}>Capture the Moment</Text>
+          <Text style={styles.headerSubtitle}>Preserve your special memories 📸</Text>
+        </LinearGradient>
+        
+        <View style={styles.permissionContainer}>
+          <Camera size={64} color="#8B1538" />
+          <Text style={styles.permissionTitle}>Camera Access Required</Text>
+          <Text style={styles.permissionMessage}>
+            We need your permission to access the camera so you can capture your special proposal moment
+          </Text>
+          <TouchableOpacity style={styles.permissionButton} onPress={requestPermission}>
+            <Text style={styles.permissionButtonText}>Grant Camera Permission</Text>
+          </TouchableOpacity>
+});
