@@ -1,0 +1,47 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Play, Pause, SkipForward, SkipBack, Heart, Search, Plus, Download } from 'lucide-react-native';
+
+export default function MusicTab() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedPlaylist, setSelectedPlaylist] = useState('romantic');
+
+  const playlists = [
+    { id: 'romantic', label: '💕 Romantic', count: 25 },
+    { id: 'proposals', label: '💍 Proposals', count: 18 },
+    { id: 'memories', label: '✨ Memories', count: 32 },
+    { id: 'classical', label: '🎼 Classical', count: 15 }
+  ];
+
+  const songs = [
+    {
+      id: 1,
+      title: 'Perfect',
+      artist: 'Ed Sheeran',
+      duration: '4:23',
+      image: 'https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg?auto=compress&cs=tinysrgb&w=400',
+      category: 'romantic',
+      isLoved: true
+    },
+    {
+      id: 2,
+      title: 'All of Me',
+      artist: 'John Legend',
+      duration: '4:29',
+      image: 'https://images.pexels.com/photos/1708528/pexels-photo-1708528.jpeg?auto=compress&cs=tinysrgb&w=400',
+      category: 'romantic',
+      isLoved: false
+    },
+    {
+      id: 3,
+      title: 'Marry Me',
+      artist: 'Train',
+      duration: '3:58',
+      image: 'https://images.pexels.com/photos/2479312/pexels-photo-2479312.jpeg?auto=compress&cs=tinysrgb&w=400',
+      category: 'proposals',
+      isLoved: true
+    },
+});
