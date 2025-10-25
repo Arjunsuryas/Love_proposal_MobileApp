@@ -1,0 +1,89 @@
+{
+  "projectName": "HealthTrackerApp",
+  "description": "Cross-platform health tracking app combining TypeScript frontend and Python backend",
+  "frontend": {
+    "type": "react-native",
+    "framework": "Expo",
+    "language": "TypeScript",
+    "entry": "App.tsx",
+    "dependencies": {
+      "react": "^18.3.0",
+      "react-native": "0.72.0",
+      "expo": "^53.0.0",
+      "axios": "^1.6.0",
+      "@react-native-async-storage/async-storage": "^2.2.0",
+      "lucide-react-native": "^0.263.0"
+    },
+    "screens": [
+      "HomeScreen",
+      "HeartScreen",
+      "HistoryScreen",
+      "SettingsScreen",
+      "NotFoundScreen"
+    ],
+    "localStorageKeys": ["heartReadings", "healthData", "theme"]
+  },
+  "backend": {
+    "type": "python",
+    "framework": "FastAPI",
+    "entry": "main.py",
+    "dependencies": {
+      "fastapi": "^0.111.0",
+      "uvicorn": "^0.24.0",
+      "pydantic": "^2.5.0",
+      "sqlalchemy": "^2.0.27",
+      "databases": "^1.5.5"
+    },
+    "apiEndpoints": [
+      {
+        "path": "/readings",
+        "method": "POST",
+        "description": "Add new heart rate / BP reading",
+        "requestBody": {
+          "heartRate": "integer",
+          "bloodPressure": {"systolic": "integer", "diastolic": "integer"},
+          "timestamp": "ISO8601 string"
+        },
+        "response": {"status": "ok", "count": "number of readings"}
+      },
+      {
+        "path": "/history",
+        "method": "GET",
+        "description": "Get last N readings",
+        "response": [
+          {
+            "heartRate": 72,
+            "bloodPressure": {"systolic": 120, "diastolic": 80},
+            "timestamp": "2025-10-26T12:00:00Z"
+          }
+        ]
+      }
+    ],
+    "database": {
+      "type": "sqlite",
+      "file": "health_data.db",
+      "tables": ["readings", "users", "settings"]
+    }
+  },
+  "deployment": {
+    "mobile": {
+      "platforms": ["iOS", "Android"],
+      "distribution": "Expo build or App Store / Play Store"
+    },
+    "backend": {
+      "host": "https://api.healthtrackerapp.com",
+      "deploymentOptions": ["AWS EC2", "Heroku", "Docker"]
+    },
+    "web": {
+      "optional": true,
+      "frontend": "React Web",
+      "backend": "FastAPI"
+    }
+  },
+  "notes": [
+    "Frontend communicates with backend via REST API",
+    "Python backend can integrate ML models for predictions",
+    "Local storage used for caching and offline support",
+    "UI themes supported (light/dark)"
+  ]
+}
